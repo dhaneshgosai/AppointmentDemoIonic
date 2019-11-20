@@ -43,7 +43,7 @@ export class Tab1Page {
       db.executeSql('INSERT INTO appointments VALUES(NULL,?)',[title])
       .then(res => {
         console.log(res);
-        this.getData();
+        // this.getData();
       })
       .catch(e => {
         console.log('insert data error',e);
@@ -53,6 +53,7 @@ export class Tab1Page {
   }
 
   public getData() {
+    this.appointments = [];
     this.sqlite.create({
       name: 'appointmentdata.db',
       location: 'default'
@@ -60,17 +61,14 @@ export class Tab1Page {
       db.executeSql('SELECT * FROM appointments ORDER BY rowid DESC',[])
     .then(res => {
       console.log(res.rows);
-      this.appointments = res.rows;
       // let filedir = this.file.documentsDirectory  + 'SavedPhotos/';
-      // for(var i=0; i<res.rows.length; i++) {
-      //   // console.log("Inner loop :",res.rows.item(i).imagepath)
-      //   this.photolist.push({
-      //     rowid:res.rows.item(i).rowid,
-      //     imagename: this.win.Ionic.WebView.convertFileSrc(filedir + res.rows.item(i).imagename),
-      //     imagepath:this.win.Ionic.WebView.convertFileSrc(res.rows.item(i).imagepath),
-      //     isChecked:false
-      //   })
-      // }
+      for(var i=0; i<res.rows.length; i++) {
+        // console.log("Inner loop :",res.rows.item(i).imagepath)
+        this.appointments.push({
+          rowid:res.rows.item(i).rowid,
+          name: res.rows.item(i).name
+        })
+      }
     })
     .catch(e => console.log(e));
 }).catch(e => {

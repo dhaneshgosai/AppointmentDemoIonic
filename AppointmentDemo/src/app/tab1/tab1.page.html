@@ -4,6 +4,7 @@
       All Appointments
     </ion-title>
     <ion-button (click)="insertData('Appointment1')">Add</ion-button>
+    <ion-button (click)="getData()">Get</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -28,7 +29,7 @@
       </ion-list-header> -->
       <ion-item *ngFor="let appointment of appointments">
         <ion-icon slot="start" color="medium" name="calendar"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
+        <ion-label>{{appointment.rowid }} - {{ appointment.name }}</ion-label>
       </ion-item>
     </ion-list>
 </ion-content>
