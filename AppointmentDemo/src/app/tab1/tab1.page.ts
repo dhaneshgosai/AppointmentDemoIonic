@@ -10,7 +10,7 @@ export class Tab1Page {
 
   appointments: any = [];
   constructor(private sqlite: SQLite) {
-    // this.saveData();
+    this.saveData();
   }
 
   saveData(){
