@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+       <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Appointment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="appointmentFormGroup">
+        <ion-list>
+            <ion-item class="items">
+              <ion-label>Summary</ion-label>
+              <ion-input [(ngModel)]="appointmentData.summary" formControlName="summary" id="summary" type="text" maxlength="255" required placeholder="Summary"></ion-input>
+            </ion-item>
+            <ion-item class="items">
+                <ion-label>Location</ion-label>
+                <ion-input [(ngModel)]="appointmentData.location" formControlName="location" id="location" type="text" required  maxlength="255" placeholder="Location"></ion-input>
+            </ion-item>
+            <ion-item  class="items">
+              <ion-label>Start Date</ion-label>
+              <ion-datetime [(ngModel)]="appointmentData.startDate" formControlName="startDate" displayFormat="DD/MM/YYYY" placeholder="Select Start Date"></ion-datetime>
+            </ion-item>
+            <ion-item  class="items">
+                <ion-label>End Date</ion-label>
+                <ion-datetime [(ngModel)]="appointmentData.endDate" formControlName="endDate" displayFormat="DD/MM/YYYY" placeholder="Select End Date"></ion-datetime>
+            </ion-item>
+          </ion-list>
+          <!-- <if the form is not valid, the add appointment button would be disabled -->
+          <ion-button expand="block" color="primary" type="submit" shape="round" [disabled]="!appointmentFormGroup.valid" (click)="addAppointment()">Add Appointment</ion-button>
+    </form>
+</ion-content>

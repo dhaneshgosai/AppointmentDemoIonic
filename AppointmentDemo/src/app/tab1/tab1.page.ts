@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -9,7 +10,7 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 export class Tab1Page {
 
   appointments: any = [];
-  constructor(private sqlite: SQLite) {
+  constructor(private sqlite: SQLite, public router: Router) {
     this.saveData();
   }
 
@@ -21,7 +22,7 @@ export class Tab1Page {
       .then((db: SQLiteObject) => {
     
     
-        db.executeSql('CREATE TABLE IF NOT EXISTS appointments(rowid INTEGER PRIMARY KEY,name VARCHAR(32))', [])
+        db.executeSql('CREATE TABLE IF NOT EXISTS appointments(rowid INTEGER PRIMARY KEY,summary VARCHAR(255),location VARCHAR(255), startdate TEXT,enddate TEXT)', [])
           .then(() => {
             console.log('Executed SQL');
           })
@@ -33,23 +34,7 @@ export class Tab1Page {
   }
 
   insertData(title){
-
-    this.sqlite.create({
-      name: 'appointmentdata.db',
-      location: 'default'
-    })
-      .then((db: SQLiteObject) => {
-  
-      db.executeSql('INSERT INTO appointments VALUES(NULL,?)',[title])
-      .then(res => {
-        console.log(res);
-        // this.getData();
-      })
-      .catch(e => {
-        console.log('insert data error',e);
-      });
-    })
-    .catch(e => console.log(e));
+    this.router.navigate(['/add-appointment'])
   }
 
   public getData() {
@@ -66,7 +51,10 @@ export class Tab1Page {
         // console.log("Inner loop :",res.rows.item(i).imagepath)
         this.appointments.push({
           rowid:res.rows.item(i).rowid,
-          name: res.rows.item(i).name
+          summary: res.rows.item(i).summary,
+          location: res.rows.item(i).location,
+          startDate: res.rows.item(i).startdate,
+          endDate: res.rows.item(i).enddate
         })
       }
     })

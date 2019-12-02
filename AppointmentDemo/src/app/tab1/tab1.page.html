@@ -27,9 +27,17 @@
       <!-- <ion-list-header>
         <ion-label>Resources</ion-label>
       </ion-list-header> -->
-      <ion-item *ngFor="let appointment of appointments">
+      <ion-card *ngFor="let appointment of appointments">
         <ion-icon slot="start" color="medium" name="calendar"></ion-icon>
-        <ion-label>{{appointment.rowid }} - {{ appointment.name }}</ion-label>
-      </ion-item>
+        <ion-item>
+            <ion-label>{{appointment.rowid }} - {{ appointment.summary }}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label> {{ appointment.location }}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{appointment.startDate }} - {{ appointment.endDate }}</ion-label>
+        </ion-item>
+      </ion-card>
     </ion-list>
 </ion-content>
