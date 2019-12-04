@@ -20,11 +20,11 @@
             </ion-item>
             <ion-item  class="items">
               <ion-label>Start Date</ion-label>
-              <ion-datetime [(ngModel)]="appointmentData.startDate" formControlName="startDate" displayFormat="DD/MM/YYYY" placeholder="Select Start Date"></ion-datetime>
+              <ion-datetime [(ngModel)]="appointmentData.startDate" formControlName="startDate" [min]="minDate" displayFormat="DD/MM/YYYY" placeholder="Select Start Date"></ion-datetime>
             </ion-item>
             <ion-item  class="items">
                 <ion-label>End Date</ion-label>
-                <ion-datetime [(ngModel)]="appointmentData.endDate" formControlName="endDate" displayFormat="DD/MM/YYYY" placeholder="Select End Date"></ion-datetime>
+                <ion-datetime [(ngModel)]="appointmentData.endDate" formControlName="endDate" [min]="appointmentData.startDate" displayFormat="DD/MM/YYYY" placeholder="Select End Date"></ion-datetime>
             </ion-item>
           </ion-list>
           <!-- <if the form is not valid, the add appointment button would be disabled -->
