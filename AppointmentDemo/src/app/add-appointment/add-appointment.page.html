@@ -3,7 +3,8 @@
     <ion-buttons slot="start">
        <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title> {{ isEdit ? Edit Appointment : New Appointment }}</ion-title>
+    <ion-title> {{ isEdit ? "Edit Appointment" : "New Appointment" }}</ion-title>
+    <!-- <ion-title> New Appointment </ion-title> -->
   </ion-toolbar>
 </ion-header>
 
@@ -28,6 +29,6 @@
             </ion-item>
           </ion-list>
           <!-- <if the form is not valid, the add appointment button would be disabled -->
-          <ion-button expand="block" color="primary" type="submit" shape="round" [disabled]="!appointmentFormGroup.valid" (click)="addAppointment()"> {{ isEdit ? Update Appointment : Add Appointment }}</ion-button>
+          <ion-button expand="block" color="primary" type="submit" shape="round" [disabled]="!appointmentFormGroup.valid" (click)="addAppointment()"> {{ isEdit ? "Update Appointment" : "Add Appointment" }}</ion-button>
     </form>
 </ion-content>

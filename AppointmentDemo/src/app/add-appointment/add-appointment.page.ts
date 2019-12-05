@@ -21,7 +21,7 @@ export class AddAppointmentPage implements OnInit {
   locationAC: AbstractControl;
   startDateAC: AbstractControl;
   endDateAC: AbstractControl;
-  isEdit = false;
+  isEdit = true;
   selectedRowId : string;
 
   constructor(public fb: FormBuilder,
