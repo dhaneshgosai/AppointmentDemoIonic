@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
        <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>New Appointment</ion-title>
+    <ion-title> {{ isEdit ? Edit Appointment : New Appointment }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,14 +20,14 @@
             </ion-item>
             <ion-item  class="items">
               <ion-label>Start Date</ion-label>
-              <ion-datetime [(ngModel)]="appointmentData.startDate" formControlName="startDate" [min]="minDate" displayFormat="DD/MM/YYYY" placeholder="Select Start Date"></ion-datetime>
+              <ion-datetime [(ngModel)]="appointmentData.startDate" formControlName="startDate" [min]="minDate" max="2020-12-31" displayFormat="DD/MM/YYYY" placeholder="Select Start Date"></ion-datetime>
             </ion-item>
             <ion-item  class="items">
                 <ion-label>End Date</ion-label>
-                <ion-datetime [(ngModel)]="appointmentData.endDate" formControlName="endDate" [min]="appointmentData.startDate" displayFormat="DD/MM/YYYY" placeholder="Select End Date"></ion-datetime>
+                <ion-datetime [(ngModel)]="appointmentData.endDate" formControlName="endDate" [min]="appointmentData.startDate" max="2020-12-31" displayFormat="DD/MM/YYYY" placeholder="Select End Date"></ion-datetime>
             </ion-item>
           </ion-list>
           <!-- <if the form is not valid, the add appointment button would be disabled -->
-          <ion-button expand="block" color="primary" type="submit" shape="round" [disabled]="!appointmentFormGroup.valid" (click)="addAppointment()">Add Appointment</ion-button>
+          <ion-button expand="block" color="primary" type="submit" shape="round" [disabled]="!appointmentFormGroup.valid" (click)="addAppointment()"> {{ isEdit ? Update Appointment : Add Appointment }}</ion-button>
     </form>
 </ion-content>
