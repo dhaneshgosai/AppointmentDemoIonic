@@ -17,16 +17,23 @@ export class Tab1Page implements OnInit{
     private db: DatabaseService,
     private platform: Platform,
     private alertCtrl : AlertController) {
-    
+   this.db.setDbObject(); 
   }
-
 
   ngOnInit(){
+    console.log("ngOnInit");
+    
+    
+  }
+  ionViewWillEnter() {
+    console.log("ionViewWillEnter");
     this.platform.ready().then(() => {
-      this.getAllAppointments();
+      console.log("platform.ready");
+      setTimeout(() => {
+        this.getAllAppointments();
+      }, 100);
     });
   }
-
   insertData(){
     this.router.navigate(['/add-appointment'])
   }
@@ -55,10 +62,12 @@ export class Tab1Page implements OnInit{
         month++;
       }
     }
+
     this.db.getAllAppointments(('0' + month).slice(-2)).subscribe( data => {
       if (data instanceof Error) {
         console.log("Error");
       } else {
+        console.log("Data:",data);
         this.appointments = data;
       }
     });
@@ -89,9 +98,9 @@ export class Tab1Page implements OnInit{
                 if (data instanceof Error) {
                   console.log("Error");
                 } else {
-                  var index = this.appointments.findIndex(item => item.rowid === appointment.rowid)
-                  console.log('Delete Index',index);
-                  this.appointments.splice(index, 1);
+                  // var index = this.appointments.findIndex(item => item.rowid === appointment.rowid)
+                  // console.log('Delete Index',index);
+                  this.getAllAppointments();
                 }
               });
               confirm.dismiss();

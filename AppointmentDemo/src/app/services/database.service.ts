@@ -29,6 +29,10 @@ export class DatabaseService {
 
    }
 
+   setDbObject(){
+     console.log("set database object");
+   }
+
    addAppointment(appointmentData): Observable<any> {
      this.addAppointmentIntoDB(appointmentData);
      return this.insertRow.asObservable();

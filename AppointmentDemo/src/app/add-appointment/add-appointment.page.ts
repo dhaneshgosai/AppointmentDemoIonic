@@ -21,7 +21,7 @@ export class AddAppointmentPage implements OnInit {
   locationAC: AbstractControl;
   startDateAC: AbstractControl;
   endDateAC: AbstractControl;
-  isEdit = true;
+  isEdit = false;
   selectedRowId : string;
 
   constructor(public fb: FormBuilder,
@@ -61,15 +61,18 @@ export class AddAppointmentPage implements OnInit {
 
   addAppointment() {
     
-    let appointmentData = [
-      this.appointmentData.summary,
-      this.appointmentData.location,
-      moment(this.appointmentData.startDate).format("YYYY-MM-DD"),
-      moment(this.appointmentData.endDate).format("YYYY-MM-DD"),
-      this.selectedRowId
-    ];
+    
 
     if (this.isEdit) {
+
+      let appointmentData = [
+        this.appointmentData.summary,
+        this.appointmentData.location,
+        moment(this.appointmentData.startDate).format("YYYY-MM-DD"),
+        moment(this.appointmentData.endDate).format("YYYY-MM-DD"),
+        this.selectedRowId
+      ];
+
       this.db.updateAppointment(appointmentData).subscribe(data => {
         if (data instanceof Error) {
           console.log('insert data error',data);
@@ -79,6 +82,13 @@ export class AddAppointmentPage implements OnInit {
         }
       });
     } else {
+
+      let appointmentData = [
+        this.appointmentData.summary,
+        this.appointmentData.location,
+        moment(this.appointmentData.startDate).format("YYYY-MM-DD"),
+        moment(this.appointmentData.endDate).format("YYYY-MM-DD")
+      ];
       this.db.addAppointment(appointmentData).subscribe(data => {
         if (data instanceof Error) {
           console.log('insert data error',data);
